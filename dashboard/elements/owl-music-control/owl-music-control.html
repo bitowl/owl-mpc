@@ -1,0 +1,37 @@
+<link rel="import" href="../../../../../bower_components/paper-button/paper-button.html">
+<dom-module id="owl-music-control">
+	<template>
+		<style>
+			:host {
+			}
+			#show {
+				--paper-button: {
+					background-color: #5BA664;
+					color: white;
+				}
+			}
+			#hide {
+				--paper-button: {
+					background-color: #C9513E;
+					color: white;
+				}
+			}
+		</style>
+
+        
+            <paper-button id="play" raised on-tap="playMusic">
+                Play
+            </paper-button>
+        
+            <paper-button id="pause" raised on-tap="pauseMusic">
+                Pause
+            </paper-button>
+        
+            <paper-button id="next" raised on-tap="nextMusic">
+                Next
+            </paper-button>
+
+	</template>
+
+	<script src="owl-music-control.js"></script>
+</dom-module>
