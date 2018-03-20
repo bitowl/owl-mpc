@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "host": {
+            "type": "string",
+            "default": "localhost",
+            "description": "The host mpd is running on"
+        },
+        "port": {
+            "type": "number",
+            "default": 6600,
+            "description": "The port mpd is running on"
+        },
+        "reconnectTime": {
+            "type": "number",
+            "default": 5000,
+            "description": "Time between reconnect tries (milliseconds)"
+        }
+    },
+    "required": [
+    ]
+}

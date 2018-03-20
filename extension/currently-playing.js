@@ -29,14 +29,14 @@ module.exports = function (nodecg) {
     }
 
     function connectToMpd() {
-        mpc.connectTCP('localhost', 6600).then(value => { 
+        mpc.connectTCP(nodecg.bundleConfig.host, nodecg.bundleConfig.port).then(value => { 
             nodecg.log.info('Connected to MPD server');
             mpcReplicant.connected = true;
             retrieveCurrentSong();
         }).catch(reason => {
             mpc.disconnect();
             nodecg.log.error('Couldn\'t connect to MPD server', reason);
-            setTimeout(reconnectToMpd, 5000);
+            setTimeout(reconnectToMpd, nodecg.bundleConfig.reconnectTime);
         });
     }
 

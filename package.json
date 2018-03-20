@@ -27,7 +27,8 @@
         "title": "Music",
         "width": 3,
         "file": "music.html",
-        "headerColor": "#9f9bbd"
+        "headerColor": "#9f9bbd",
+	"workspace": "Stream"
       }
     ]
   },
