@@ -8,25 +8,38 @@ module.exports = function (nodecg) {
         playing: false
     }, persistent: false});
 
+    function retrieveCurrentSong() {
+        mpc.status.currentSong().then(song => {
+            mpcReplicant.value.artist = song.artist;
+            mpcReplicant.value.title = song.title;
+            mpcReplicant.value.playing = true;
+        });
+    }
+
+    function connectToMpd() {
+        mpc.connectTCP('localhost', 6600).then(value => { 
+            nodecg.log.info('Connected to MPD server');
+            retrieveCurrentSong();
+        }).catch(reason => {
+            nodecg.log.error('Couldn\'t connect to MPD server', reason);
+            setTimeout(1000, function() {
+                nodecg.log.info('Trying to reconnect to MDP server...');
+                connectToMpd();
+            });
+        });
+    }
+
     var mpc = new MPC();
-    mpc.connectTCP('localhost', 6600).then(value => { 
-        nodecg.log.info('Connected to MPD server');
-    }).catch(reason => {
-        nodecg.log.error('Couldn\'t connect to MPD server', reason);
-    });
     mpc.on('changed-player', () => { 
         mpc.status.status().then(status => { 
             if (status.state == 'play') { 
-                mpc.status.currentSong().then(song => {
-                    mpcReplicant.value.artist = song.artist;
-                    mpcReplicant.value.title = song.title;
-                    mpcReplicant.value.playing = true;
-                });
+                retrieveCurrentSong();
             } else {
                 mpcReplicant.value.playing = false;
             }
         });
     });
+    connectToMpd();
     
 
     nodecg.listenFor('play', function() {
