@@ -14,6 +14,7 @@
             this.$.volumeSlider.addEventListener('immediate-value-change', this.changeVolume);
             playingRepl.on('change', value => {
                 this.playPauseButtonText = value ? 'Pause' : 'Play';
+                this.playPauseButtonIcon = value? 'av:pause' : 'av:play-arrow';
             });
 
             if (!nodecg.bundleConfig.showBanButton) {

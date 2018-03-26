@@ -1,0 +1,9 @@
+{
+  "name": "owl-mpc",
+  "dependencies": {
+    "iron-icons": "^2.1.1",
+    "paper-button": "^2.1.0",
+    "paper-slider": "^2.0.5",
+    "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.1"
+  }
+}
