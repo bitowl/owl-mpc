@@ -1,4 +1,6 @@
-<link rel="import" href="../../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../../bower_components/nodecg-replicant/nodecg-replicant.html">
 <dom-module id="owl-music-control">
 	<template>
 		<style>
@@ -16,6 +18,11 @@
 					color: white;
 				}
 			}
+			.volumeField {
+				display: flex;
+				align-items: center;
+				padding-top: 8px;
+			}
 		</style>
 
         
@@ -29,7 +36,13 @@
         
             <paper-button id="next" raised on-tap="nextMusic">
                 Next
-            </paper-button>
+			</paper-button>
+			
+			<div class="volumeField">
+				<nodecg-replicant replicant-name="volume" value="{{volume}}"></nodecg-replicant>
+				<span class="label">Volume: </span>
+				<paper-slider id="volumeSlider" value="{{volume}}" pin></paper-slider>
+			</div>
 
 	</template>
 

@@ -9,8 +9,14 @@ module.exports = function (nodecg) {
         connected: false,
     }, persistent: false});
 
+    const volumeRepl = nodecg.Replicant('volume', {
+        defaultValue: 100,
+        persistent: true});
+
     function retrieveCurrentSong() {
         mpc.status.status().then(status => { 
+            volumeRepl.value = status.volume;
+
             if (status.state == 'play') { 
                 mpc.status.currentSong().then(song => {
                     mpcReplicant.value.artist = song.artist;
@@ -63,5 +69,13 @@ module.exports = function (nodecg) {
 
     nodecg.listenFor('next', function() {
         mpc.playback.next();
+    });
+
+
+
+
+    volumeRepl.on('change', volume => {
+        mpc.playbackOptions.setVolume(volume);
+        console.log('Volume', volume);
     });
 };

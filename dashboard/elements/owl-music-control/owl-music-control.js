@@ -8,7 +8,10 @@
 
         ready() {
             super.ready();
+            this.$.volumeSlider.addEventListener('immediate-value-change', this.changeVolume);
+            
         }
+
 
         playMusic() {
             nodecg.sendMessage('play');
@@ -20,6 +23,10 @@
 
         nextMusic() {
             nodecg.sendMessage('next');
+        }
+
+        changeVolume() {
+            this.value = this.immediateValue;
         }
     }
     customElements.define(OwlMusicControl.is, OwlMusicControl);
