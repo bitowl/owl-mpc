@@ -28,6 +28,40 @@
         "width": 3,
         "file": "music.html",
         "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "ban-current-song",
+        "title": "Ban current song?",
+        "width": 2,
+        "file": "ban-current-song.html",
+        "dialog": true,
+        "dialogButtons": [
+          {
+            "name": "Yes",
+            "type": "confirm"
+          },
+          {
+            "name": "No",
+            "type": "dismiss"
+          }
+        ]
+      },
+      {
+        "name": "edit-total",
+        "title": "Edit Total",
+        "width": 3,
+        "file": "edit-total.html",
+        "dialog": true,
+        "dialogButtons": [
+          {
+            "name": "Confirm",
+            "type": "confirm"
+          },
+          {
+            "name": "Dismiss",
+            "type": "dismiss"
+          }
+        ]
       }
     ]
   },

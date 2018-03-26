@@ -3,6 +3,7 @@
 <link rel="import" href="../../../bower_components/nodecg-replicant/nodecg-replicant.html">
 <link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
 <dom-module id="owl-music-control">
 	<template>
 		<style>
@@ -35,11 +36,11 @@
                 &nbsp;Next
 			</paper-button>
 
-			<paper-button id="ban" raised on-tap="banSong">
+			<paper-button id="ban" on-tap="confirmBanSong">
 				<iron-icon icon="icons:block"></iron-icon>
 				&nbsp;Ban
 			</paper-button>
-			
+
 			<div class="volumeField" id="volumeField">
 				<nodecg-replicant replicant-name="volume" value="{{volume}}"></nodecg-replicant>
 				<span class="label">Volume: </span>

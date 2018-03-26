@@ -38,8 +38,8 @@
             nodecg.sendMessage('next');
         }
 
-        banSong() {
-            nodecg.sendMessage('ban');
+        confirmBanSong() {
+            nodecg.getDialog('ban-current-song').open();
         }
 
         changeVolume() {

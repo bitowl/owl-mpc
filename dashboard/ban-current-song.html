@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    </head>
+<body>
+    Do you really want to ban the current song?
+    <script>
+        document.addEventListener('dialog-confirmed', function() {
+            nodecg.sendMessage('ban');
+        });
+    </script>
+</body>
+</html>
