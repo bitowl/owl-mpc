@@ -15,6 +15,11 @@
             "type": "number",
             "default": 5000,
             "description": "Time between reconnect tries (milliseconds)"
+        },
+        "showBanButton": {
+            "type": "boolean",
+            "default": false,
+            "description": "Show a button that skips the current song and removes it from the 'stream' playlist."
         }
     },
     "required": [

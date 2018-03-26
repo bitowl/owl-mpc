@@ -15,6 +15,10 @@
             playingRepl.on('change', value => {
                 this.playPauseButtonText = value ? 'Pause' : 'Play';
             });
+
+            if (!nodecg.bundleConfig.showBanButton) {
+                this.$.ban.style.display = 'none';
+            }
         }
 
 
@@ -30,9 +34,15 @@
             nodecg.sendMessage('next');
         }
 
+        banSong() {
+            nodecg.sendMessage('ban');
+        }
+
         changeVolume() {
             this.value = this.immediateValue;
         }
+
+        
     }
     customElements.define(OwlMusicControl.is, OwlMusicControl);
 })();

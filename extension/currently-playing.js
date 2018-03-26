@@ -75,7 +75,32 @@ module.exports = function (nodecg) {
         mpc.playback.next();
     });
 
+    nodecg.listenFor('ban', () => {
+        mpc.status.currentSong().then(song => {
+            mpc.storedPlaylists.listPlaylistInfo('stream').then(playlist => {
+                console.log(playlist.length);
+                for (let i = 0; i < playlist.length; i++) {
+                    const element = playlist[i];
+                    if (element.path === song.path) {
+                        nodecg.log.info('Banned song ' + song.path);
+                        mpc.storedPlaylists.playlistDelete('stream', i);
+                        mpc.currentPlaylist.deleteId(song.id).catch(() => {
+                            nodecg.log.error('Could not delete song from current playlist');
+                        });
+                        mpc.playback.next();
+                        return;
+                    }
+                }
+                nodecg.log.error('Song ' + song.path + ' not found in playlist to ban');
+            });
+        }).catch(() => {
+            nodecg.log.error('No song playing to ban');
+        });
+        // mpc.p
+    });
+
     volumeRepl.on('change', volume => {
         mpc.playbackOptions.setVolume(volume);
     });
+
 };
