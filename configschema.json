@@ -20,6 +20,11 @@
             "type": "boolean",
             "default": false,
             "description": "Show a button that skips the current song and removes it from the 'stream' playlist."
+        },
+        "showVolumeSlider": {
+            "type": "boolean",
+            "default": true,
+            "description": "Show a slider to control the volume"
         }
     },
     "required": [

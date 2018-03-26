@@ -19,6 +19,9 @@
             if (!nodecg.bundleConfig.showBanButton) {
                 this.$.ban.style.display = 'none';
             }
+            if (!nodecg.bundleConfig.showVolumeSlider) {
+                this.$.volumeField.style.display = 'none';
+            }
         }
 
 
