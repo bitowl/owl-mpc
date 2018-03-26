@@ -5,9 +5,13 @@ var MPC = require('mpc-js').MPC;
 module.exports = function (nodecg) {
     const mpcReplicant = nodecg.Replicant('mpc', {defaultValue:{
         song: '',
-        playing: false,
         connected: false,
     }, persistent: false});
+
+    const playingRepl = nodecg.Replicant('playing', {
+        defaultValue: false,
+        persistent: false
+    });
 
     const volumeRepl = nodecg.Replicant('volume', {
         defaultValue: 100,
@@ -21,10 +25,10 @@ module.exports = function (nodecg) {
                 mpc.status.currentSong().then(song => {
                     mpcReplicant.value.artist = song.artist;
                     mpcReplicant.value.title = song.title;
-                    mpcReplicant.value.playing = true;
+                    playingRepl.value = true;
                 });
             } else {
-                mpcReplicant.value.playing = false;
+                playingRepl.value = false;
             }
         });
     }
@@ -71,11 +75,7 @@ module.exports = function (nodecg) {
         mpc.playback.next();
     });
 
-
-
-
     volumeRepl.on('change', volume => {
         mpc.playbackOptions.setVolume(volume);
-        console.log('Volume', volume);
     });
 };

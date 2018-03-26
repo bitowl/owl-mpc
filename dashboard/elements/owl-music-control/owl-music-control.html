@@ -26,12 +26,8 @@
 		</style>
 
         
-            <paper-button id="play" raised on-tap="playMusic">
-                Play
-            </paper-button>
-        
-            <paper-button id="pause" raised on-tap="pauseMusic">
-                Pause
+            <paper-button id="playpause" raised on-tap="togglePlaying">
+                {{playPauseButtonText}}
             </paper-button>
         
             <paper-button id="next" raised on-tap="nextMusic">
