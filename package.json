@@ -45,23 +45,6 @@
             "type": "dismiss"
           }
         ]
-      },
-      {
-        "name": "edit-total",
-        "title": "Edit Total",
-        "width": 3,
-        "file": "edit-total.html",
-        "dialog": true,
-        "dialogButtons": [
-          {
-            "name": "Confirm",
-            "type": "confirm"
-          },
-          {
-            "name": "Dismiss",
-            "type": "dismiss"
-          }
-        ]
       }
     ]
   },

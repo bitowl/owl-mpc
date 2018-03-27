@@ -4,9 +4,14 @@ var MPC = require('mpc-js').MPC;
 
 module.exports = function (nodecg) {
     const mpcReplicant = nodecg.Replicant('mpc', {defaultValue:{
-        song: '',
-        connected: false,
+        artist: 'not connected',
+        title: 'not connected'
     }, persistent: false});
+
+    const connectedRepl = nodecg.Replicant('connected', {
+        defaultValue: false,
+        persistent: false
+    });
 
     const playingRepl = nodecg.Replicant('playing', {
         defaultValue: false,
@@ -41,11 +46,11 @@ module.exports = function (nodecg) {
     function connectToMpd() {
         mpc.connectTCP(nodecg.bundleConfig.host, nodecg.bundleConfig.port).then(value => { 
             nodecg.log.info('Connected to MPD server');
-            mpcReplicant.connected = true;
+            connectedRepl.value = true;
             retrieveCurrentSong();
         }).catch(reason => {
             mpc.disconnect();
-            nodecg.log.error('Couldn\'t connect to MPD server', reason);
+            nodecg.log.warn('Couldn\'t connect to MPD server', reason);
             setTimeout(reconnectToMpd, nodecg.bundleConfig.reconnectTime);
         });
     }
@@ -55,7 +60,7 @@ module.exports = function (nodecg) {
         retrieveCurrentSong();
     });
     mpc.on('socket-end', () => {
-        mpcReplicant.connected = false;
+        connectedRepl.value = false;
         mpc.disconnect();
         nodecg.log.error('MPD server closed connection');
         reconnectToMpd();
@@ -78,7 +83,6 @@ module.exports = function (nodecg) {
     nodecg.listenFor('ban', () => {
         mpc.status.currentSong().then(song => {
             mpc.storedPlaylists.listPlaylistInfo('stream').then(playlist => {
-                console.log(playlist.length);
                 for (let i = 0; i < playlist.length; i++) {
                     const element = playlist[i];
                     if (element.path === song.path) {
@@ -96,7 +100,6 @@ module.exports = function (nodecg) {
         }).catch(() => {
             nodecg.log.error('No song playing to ban');
         });
-        // mpc.p
     });
 
     volumeRepl.on('change', volume => {

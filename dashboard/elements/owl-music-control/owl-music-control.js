@@ -3,6 +3,7 @@
 
 
     const playingRepl = nodecg.Replicant('playing');
+    const connectedRepl = nodecg.Replicant('connected');
 
     class OwlMusicControl extends Polymer.Element {
         static get is() {
@@ -15,6 +16,12 @@
             playingRepl.on('change', value => {
                 this.playPauseButtonText = value ? 'Pause' : 'Play';
                 this.playPauseButtonIcon = value? 'av:pause' : 'av:play-arrow';
+            });
+
+            connectedRepl.on('change', value => {
+                this.$.playpause.disabled = !value;
+                this.$.next.disabled = !value;
+                this.$.ban.disabled = !value;
             });
 
             if (!nodecg.bundleConfig.showBanButton) {
