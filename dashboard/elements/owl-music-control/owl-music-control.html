@@ -4,19 +4,14 @@
 <link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../bower_components/iron-icons/av-icons.html">
 <link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="/bundles/owl-nodecg-styles/dashboard/css/bitowl-theme.html">
 <dom-module id="owl-music-control">
 	<template>
-		<style>
+		<style include="bitowl-theme">
 			:host {
 			}
 			#playpause, #next {
 				text-color: #000;
-			}
-			#ban {
-				--paper-button: {
-					background-color: #C9513E;
-					color: white;
-				}
 			}
 			.volumeField {
 				display: flex;
@@ -26,17 +21,17 @@
 		</style>
 
         
-            <paper-button id="playpause" raised on-tap="togglePlaying">
+            <paper-button id="playpause" on-tap="togglePlaying" class="nodecg-accept">
 				<iron-icon icon="{{playPauseButtonIcon}}"></iron-icon>
                 &nbsp;{{playPauseButtonText}}
             </paper-button>
         
-            <paper-button id="next" raised on-tap="nextMusic">
+            <paper-button id="next" on-tap="nextMusic" class="nodecg-configure">
 				<iron-icon icon="av:skip-next"></iron-icon>
                 &nbsp;Next
 			</paper-button>
 
-			<paper-button id="ban" raised on-tap="confirmBanSong">
+			<paper-button id="ban" on-tap="confirmBanSong" class="nodecg-reject">
 				<iron-icon icon="icons:block"></iron-icon>
 				&nbsp;Ban
 			</paper-button>

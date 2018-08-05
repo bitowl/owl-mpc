@@ -1,12 +1,24 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="/bundles/owl-nodecg-styles/dashboard/css/bitowl-theme.html">
 <dom-module id="owl-currently-playing">
 	<template>
-		<style>
+		<style include="bitowl-theme">
 			:host {
 			}
-        </style>
-        <p>Artist: {{ artist }}</p>
-        <p>Title: {{ title }}</p>
+
+			p {
+				border-bottom: 1px solid var(--default-primary-color);
+
+				padding-bottom: 4px;
+			}
+			span {
+				padding-bottom: 2px;
+				display: block;
+			}
+		</style>
+		
+        <p><span class="owl-label">Artist</span>{{ artist }}</p>
+        <p><span class="owl-label">Title</span>{{ title }}</p>
         
 	</template>
 
