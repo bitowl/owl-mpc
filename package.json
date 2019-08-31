@@ -20,7 +20,7 @@
     "nodecg-bundle"
   ],
   "nodecg": {
-    "compatibleRange": "~1.1.0",
+    "compatibleRange": "^1.1.1",
     "bundleDependencies": {
       "owl-nodecg-styles": "^0.0.0"
     },
